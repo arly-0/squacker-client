@@ -1,11 +1,9 @@
 # Squacker - keep track of your progress on track!
 
-## Blitz
+- [Check live](https://ashy-bush-0fb8f0103.2.azurestaticapps.net/)
+- React, Bootstrap, Jest, Redux, Azure
 - Last deploy: 01/10/2022
-- MERN & AWS & Azure
-- [API Docs](http://trackerapi-env.eba-ndvpxezg.eu-north-1.elasticbeanstalk.com/docs/)
 - [API repository](https://github.com/arly-0/Track-session-results-tracker-API)
-- [Client app](https://ashy-bush-0fb8f0103.2.azurestaticapps.net/)
 
 ## Description
 
@@ -16,7 +14,8 @@ At the same time I was looking for a project idea to explore backend development
 As a result, an idea of Squacker - web application to keep lap times in a convenient way - came up.
 
 ### Tech
-- MERN (Mongo, Express, React, Node) stack
-- AWS Elastic Beanstalk
-- AWS CodePipeline
+- React
+- Bootstrap
+- Redux & Redux Toolkit
+- Jest & Karma
 - Azure Static Apps
