@@ -14,8 +14,8 @@ At the same time I was looking for a project idea to explore backend development
 As a result, an idea of Squacker - web application to keep lap times in a convenient way - came up.
 
 ### Tech
-- React
-- Bootstrap
+- React v18
+- Bootstrap v5
 - Redux & Redux Toolkit
 - Jest & Karma
 - Azure Static Apps
