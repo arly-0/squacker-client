@@ -1,5 +1,5 @@
 # Squacker - keep track of your progress on track!
-# APPLICATION IS IN DEVELOPMENT
+# APPLICATION IS IN DEVELOPMENT - CHECK DEVELOPMENT BRANCH FOR LATEST CODE CHANGES IF NEEDED
 
 - [Check live](https://ashy-bush-0fb8f0103.2.azurestaticapps.net/)
 - React, Bootstrap, Jest, Redux, Azure
