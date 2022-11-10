@@ -1,6 +1,7 @@
 import {useForm} from "react-hook-form";
+import ErrorOrLoading from "./ErrorOrLoading";
 
-export default function Form({fields, submitFunction}) {
+export default function Form({fields, submitFunction, error, loading}) {
     const {register, formState: {errors}, handleSubmit, reset} = useForm({mode: "onSubmit"})
     const onSubmit = data => {
         submitFunction(data)
@@ -32,6 +33,7 @@ export default function Form({fields, submitFunction}) {
                 <div className='text-danger'>{errors?.[field.name]?.message}</div>
             </div>
         )}
+        <ErrorOrLoading error={error} loading={loading}/>
         <div className='btn-group gap-3'>
             <button className='btn btn-outline-success' type='submit'>Submit</button>
             <button className='btn btn-outline-danger' onClick={onCancel} type='reset'>Cancel</button>
