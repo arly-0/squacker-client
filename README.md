@@ -1,7 +1,7 @@
 # Squacker - keep track of your progress on track!
 # APPLICATION IS IN DEVELOPMENT - CHECK DEVELOPMENT BRANCH FOR LATEST CODE CHANGES IF NEEDED
 
-- Migrating to AWS, temporary disabled [Check live](https://ashy-bush-0fb8f0103.2.azurestaticapps.net/)
+- [Check live](https://www.squacker.link/)
 - React, Bootstrap, Jest, Redux, Azure
 - Last deploy: 01/10/2022
 - [API repository](https://github.com/arly-0/Track-session-results-tracker-API)
@@ -19,3 +19,5 @@ As a result, an idea of Squacker - web application to keep lap times in a conven
 - Bootstrap v5
 - Redux & Redux Toolkit
 - AWS Amplify
+- AWS Route 53
+- AWS Certificate Manager
