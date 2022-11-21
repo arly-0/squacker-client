@@ -1,12 +1,12 @@
 import $api from "../http/axios";
 
 export default class AuthService {
-    static async register(data) {
-        return $api.post('/auth/register', data)
+    static async register({email, password}) {
+        return $api.post('/auth/register', {email, password})
     }
 
-    static async login(data) {
-        return $api.post('/auth/login', {data})
+    static async login({email, password}) {
+        return $api.post('/auth/login', {email, password})
     }
 
     static async logout(refreshToken) {

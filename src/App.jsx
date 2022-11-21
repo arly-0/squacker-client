@@ -1,11 +1,7 @@
-import NavBar from "./components/global/NavBar";
+import Navigation from "./components/Navigation"
 
 function App() {
-  return (
-    <div className="App">
-      <NavBar/>
-    </div>
-  );
+  return <Navigation/>
 }
 
 export default App;
