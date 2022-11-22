@@ -4,15 +4,14 @@ import {
     Route,
     Link
 } from "react-router-dom"
-import Results from "../views/Sessions"
-import Home from "../views/Home"
-import Login from "../views/Login"
-import { tabToUrl } from "../lib/helpers/helpers"
-import RequireAuth from './RequireAuth'
+import Home from "../../views/Home"
+import Login from "../../views/Login"
+import { tabToUrl } from "../../lib/helpers/helpers"
+import RequireAuth from '../RequireAuth'
 import Layout from './Layout'
-import { selectCurrentToken } from "../lib/store/auth/auth-slice"
+import { selectCurrentToken } from "../../lib/store/auth/auth-slice"
 import { useSelector } from 'react-redux'
-import Sessions from '../views/Sessions'
+import Sessions from '../../views/Sessions'
 
 export default function Navigation() {
     const token = useSelector(selectCurrentToken)
@@ -42,6 +41,7 @@ export default function Navigation() {
                     {/* public routes */}
                     <Route index element={<Home />} />
                     <Route path='login' element={<Login />} />
+                    <Route path='register' element={<Login />} />
 
                     {/* protected routes */}
                     <Route element={<RequireAuth />}>
