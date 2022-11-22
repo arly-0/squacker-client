@@ -3,7 +3,7 @@ import {useState} from "react";
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {useLoginMutation, useRegisterMutation} from "../lib/store/auth/auth-slice-api";
-import {setCredendials} from "../lib/store/auth/auth-slice";
+import {setCredentials} from "../lib/store/auth/auth-slice";
 
 export default function Login() {
     const fields = [
@@ -36,7 +36,7 @@ export default function Login() {
         try {
             setLoading(true)
             const response = path === '/login' ? await login(data).unwrap() : await register(data).unwrap()
-            dispatch(setCredendials(response))
+            dispatch(setCredentials(response))
             navigate('/')
         } catch (error) {
             setError(error?.data)

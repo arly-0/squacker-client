@@ -1,6 +1,6 @@
-import { authAPI } from "../../api/api"
+import { api } from "../../api/api"
 
-export const authAPISlice = authAPI.injectEndpoints({
+export const authAPISlice = api.injectEndpoints({
     endpoints: builder => ({
         login: builder.mutation({
             query: credentials => ({

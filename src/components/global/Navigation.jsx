@@ -9,15 +9,15 @@ import Login from "../../views/Login"
 import { tabToUrl } from "../../lib/helpers/helpers"
 import RequireAuth from '../RequireAuth'
 import Layout from './Layout'
-import { selectCurrentToken } from "../../lib/store/auth/auth-slice"
+import { selectCurrentAuthState } from "../../lib/store/auth/auth-slice"
 import { useSelector } from 'react-redux'
 import Sessions from '../../views/Sessions'
 
 export default function Navigation() {
-    const token = useSelector(selectCurrentToken)
+    const isAuth = useSelector(selectCurrentAuthState)
     const publicTabs = ['Home', 'Login']
     const protectedTabs = ['Home', 'Sessions', 'Account']
-    const tabs = token ? protectedTabs : publicTabs
+    const tabs = isAuth ? protectedTabs : publicTabs
     const paths = tabs.map(tab => tabToUrl(tab))
 
     return (
