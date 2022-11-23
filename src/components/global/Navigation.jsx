@@ -11,7 +11,7 @@ import RequireAuth from '../RequireAuth'
 import Layout from './Layout'
 import { selectCurrentAuthState } from "../../lib/store/auth/auth-slice"
 import { useSelector } from 'react-redux'
-import Sessions from '../../views/Sessions'
+import Sessions from '../../views/sessions'
 
 export default function Navigation() {
     const isAuth = useSelector(selectCurrentAuthState)
