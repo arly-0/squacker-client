@@ -2,8 +2,8 @@ import {createSlice} from "@reduxjs/toolkit"
 import jwtDecode from "jwt-decode"
 
 const token = localStorage.getItem('squacker-token')
-const decodedToken = jwtDecode(token)
-const user = {email: decodedToken.email, id: decodedToken.id, isActivated: decodedToken.isActivated}
+const decodedToken = token ? jwtDecode(token) : null
+const user = decodedToken ? {email: decodedToken.email, id: decodedToken.id, isActivated: decodedToken.isActivated} : null
 
 const initialState = {user, isAuth: !!token}
 const authSlice = createSlice({
