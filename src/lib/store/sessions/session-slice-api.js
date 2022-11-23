@@ -5,8 +5,9 @@ export const sessionSliceApi = api.injectEndpoints({
         getAllUserSessions: builder.query({
             query: user_id => ({
                 url: `/session/${user_id}`,
-                method: 'GET'
-            })
+                method: 'GET',
+            }),
+            providesTags: ['Session']
         })
     })
 })

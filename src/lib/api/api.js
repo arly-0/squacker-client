@@ -3,6 +3,7 @@ import {setCredentials, logOut} from '../store/auth/auth-slice'
 
 const baseQuery = fetchBaseQuery({
     baseUrl: `${process.env.REACT_APP_API_URL}/`,
+    tagTypes: ['User', 'Session'],
     credentials: 'include',
     prepareHeaders: (headers, {getState}) => {
         const token = localStorage.getItem('squacker-token')
