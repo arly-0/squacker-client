@@ -3,9 +3,10 @@ import jwtDecode from "jwt-decode"
 
 const token = localStorage.getItem('squacker-token')
 const decodedToken = token ? jwtDecode(token) : null
-const user = decodedToken ? {email: decodedToken.email, id: decodedToken.id, isActivated: decodedToken.isActivated} : null
+const isTokenValid = Date.now() < decodedToken.exp
+const user = isTokenValid ? {email: decodedToken.email, id: decodedToken.id, isActivated: decodedToken.isActivated} : null
 
-const initialState = {user, isAuth: !!token}
+const initialState = {user, isAuth: isTokenValid}
 const authSlice = createSlice({
     name: 'auth',
     initialState,
