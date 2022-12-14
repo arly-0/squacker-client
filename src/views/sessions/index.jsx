@@ -3,15 +3,27 @@ import {useSelector} from "react-redux";
 import {selectCurrentUser} from "../../lib/store/auth/auth-slice";
 import {formatDate, formatBool} from "../../lib/helpers/helpers";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faEye} from "@fortawesome/free-solid-svg-icons";
+import {faEdit} from "@fortawesome/free-solid-svg-icons";
+import ErrorOrLoading from "../../components/global/ErrorOrLoading";
+import SessionModal from "../../components/session/show";
+import {useState} from "react";
 
 export default function Sessions() {
     const user = useSelector(selectCurrentUser)
     const {data, error, isLoading} = useGetAllUserSessionsQuery(user.id)
-
+    const [show, setShow] = useState(false)
+    const [session, setSession] = useState(null)
+    const handleOpen = (session) => {
+        setShow(true)
+        setSession(session)
+    }
+    const handleClose = () => {
+        setShow(false)
+    }
     return (
         <div>
-            <table className='table table-bordered table-striped table-responsive-sm'>
+            <ErrorOrLoading error={error} loading={isLoading}/>
+            {isLoading === false && <table className='table table-bordered table-striped table-responsive-sm'>
             <thead>
             <tr className='table'>
                 <th>Date</th>
@@ -25,7 +37,7 @@ export default function Sessions() {
             </tr>
             </thead>
                 <tbody>
-                {isLoading === false && data.map(session => (
+                {data.map(session => (
                     <tr key={session.id}>
                         <td>{formatDate(session.date)}</td>
                         <td>{session.laps?.length}</td>
@@ -35,14 +47,15 @@ export default function Sessions() {
                         <td>{formatBool(session.wet)}</td>
                         <td>{session.note}</td>
                         <td>
-                            <button className='btn btn-outline-primary'>
-                                <FontAwesomeIcon icon={faEye}/>
+                            <button className='btn btn-outline-primary' onClick={() => handleOpen(session)}>
+                                <FontAwesomeIcon icon={faEdit}/>
                             </button>
                         </td>
                     </tr>
                 ))}
                 </tbody>
-            </table>
+            </table>}
+            <SessionModal session={session} show={show} handleClose={handleClose}/>
         </div>
     )
 }
