@@ -1,13 +1,23 @@
 import {useForm} from "react-hook-form";
 import ErrorOrLoading from "./ErrorOrLoading";
+import {useState} from "react";
 
-export default function Form({fields, title, submitFunction, error, loading, children}) {
+export default function Form({fields, title, submitFunction, children}) {
     const {register, formState: {errors}, handleSubmit, reset} = useForm({mode: "onSubmit"})
+    const [error, setError] = useState(null)
+    const [loading, setLoading] = useState(false)
     const onSubmit = data => {
-        submitFunction(data)
+        setLoading(true)
+        submitFunction(data).catch(error => {
+            setError(error?.data)
+        }).finally(() => {
+            setLoading(false)
+        })
     }
     const onCancel = () => {
         reset()
+        setError(null)
+        setLoading(false)
     }
     return (
         <div className='card w-50'>

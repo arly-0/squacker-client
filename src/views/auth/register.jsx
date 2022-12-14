@@ -1,6 +1,5 @@
 import Form from "../../components/global/Form";
 import {setCredentials} from "../../lib/store/auth/auth-slice";
-import {useState} from "react";
 import {useRegisterMutation} from "../../lib/store/auth/auth-slice-api";
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
@@ -24,27 +23,17 @@ export default function Register() {
             maxLength: 32
         }
     ]
-    const [error, setError] = useState(null)
-    const [loading, setLoading] = useState(false)
     const [register] = useRegisterMutation()
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const onSubmit = async (data) => {
-        try {
-            setError(null)
-            setLoading(true)
-            const response = await register(data).unwrap()
-            dispatch(setCredentials(response))
-            navigate('/')
-        } catch (error) {
-            setError(error?.data)
-        } finally {
-            setLoading(false)
-        }
+        const response = await register(data).unwrap()
+        dispatch(setCredentials(response))
+        navigate('/')
     }
     return (
         <div className='container-fluid mt-5 d-flex justify-content-center align-items-center'>
-            <Form fields={fields} title='Register' submitFunction={onSubmit} error={error} loading={loading}>
+            <Form fields={fields} title='Register' submitFunction={onSubmit}>
                 <div className='card-link d-flex justify-content-sm-evenly mt-3'>
                     <p>Already have an account?</p>
                     <p role="button" className='link-primary'
