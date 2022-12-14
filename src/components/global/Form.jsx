@@ -25,6 +25,7 @@ export default function Form({fields, title, submitFunction, children}) {
             <form onSubmit={handleSubmit(onSubmit)} className='card-body'>
                 {fields.map(field =>
                     <div key={field.name} className='mb-3'>
+                        {field.label && <label className='form-label'>{field.label}</label>}
                         <input
                             className={['form-control', errors[field.name] ? 'is-invalid' : null].join(' ')}
                             type={field.type}
