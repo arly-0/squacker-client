@@ -6,8 +6,10 @@ export default function ErrorOrLoading({error, loading}) {
                     {error.message}
                     {error.errors.length > 0 && error.errors.map(error => <p>{error}</p>)}
                 </div>}
-            {loading && <div className="spinner-border" role="status">
-                <span className="visually-hidden">Loading...</span>
+            {loading && <div className='container d-flex justify-content-center'>
+                <div className="spinner-border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </div>
             </div>}
         </>
     )
