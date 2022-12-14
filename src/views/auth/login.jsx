@@ -1,9 +1,9 @@
-import Form from "../components/global/Form";
+import Form from "../../components/global/Form";
+import {setCredentials} from "../../lib/store/auth/auth-slice";
 import {useState} from "react";
+import {useLoginMutation} from "../../lib/store/auth/auth-slice-api";
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
-import {useLoginMutation, useRegisterMutation} from "../lib/store/auth/auth-slice-api";
-import {setCredentials} from "../lib/store/auth/auth-slice";
 
 export default function Login() {
     const fields = [
@@ -27,15 +27,13 @@ export default function Login() {
     const [error, setError] = useState(null)
     const [loading, setLoading] = useState(false)
     const [login] = useLoginMutation()
-    const [register] = useRegisterMutation()
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const path = window.location.pathname
-    const title = path === '/login' ? 'Sign In' : 'Sign Up'
     const onSubmit = async (data) => {
         try {
+            setError(null)
             setLoading(true)
-            const response = path === '/login' ? await login(data).unwrap() : await register(data).unwrap()
+            const response = await login(data).unwrap()
             dispatch(setCredentials(response))
             navigate('/')
         } catch (error) {
@@ -46,8 +44,14 @@ export default function Login() {
     }
     return (
         <div className='container-fluid mt-5 d-flex justify-content-center align-items-center'>
-            <Form fields={fields} title={title} submitFunction={onSubmit} error={error} loading={loading}>
-                {path === '/login' && <button onClick={() => navigate('/register')} type='button' className='btn btn-outline-primary w-100'>Sign Up</button>}
+            <Form fields={fields} title='Login' submitFunction={onSubmit} error={error} loading={loading}>
+                <div className='card-link d-flex justify-content-sm-evenly mt-3'>
+                    <p>Do not have an account yet?</p>
+                    <p role="button" className='link-primary'
+                       onClick={() => navigate('/register')}>
+                       Register here
+                    </p>
+                </div>
             </Form>
         </div>
     )
