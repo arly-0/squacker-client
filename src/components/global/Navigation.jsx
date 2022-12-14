@@ -5,7 +5,7 @@ import {
     Link
 } from "react-router-dom"
 import Home from "../../views/Home"
-import Login from "../../views/Login"
+import Auth from "../../views/auth/Auth"
 import { tabToUrl } from "../../lib/helpers/helpers"
 import RequireAuth from '../RequireAuth'
 import Layout from './Layout'
@@ -23,7 +23,7 @@ export default function Navigation() {
     return (
         <>
             <div className="nav bg-danger opacity-100">
-                <div className="navbar p-2">
+                <div className="navbar container-lg p-2">
                     <div className="navbar-brand text-white fw-bold">
                         <Link className='nav-link text-white' to='/'>SQUACKER</Link>
                     </div>
@@ -40,8 +40,8 @@ export default function Navigation() {
                 <Route path='/' element={<Layout />}>
                     {/* public routes */}
                     <Route index element={<Home />} />
-                    <Route path='login' element={<Login />} />
-                    <Route path='register' element={<Login />} />
+                    <Route path='login' element={<Auth />} />
+                    <Route path='register' element={<Auth />} />
 
                     {/* protected routes */}
                     <Route element={<RequireAuth />}>
