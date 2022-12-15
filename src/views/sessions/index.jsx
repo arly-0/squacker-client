@@ -5,7 +5,7 @@ import {formatDate, formatBool} from "../../lib/helpers/helpers";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEdit} from "@fortawesome/free-solid-svg-icons";
 import ErrorOrLoading from "../../components/global/ErrorOrLoading";
-import SessionModal from "../../components/session/show";
+import EditSession from "../../components/session/edit";
 import {useState} from "react";
 
 export default function Sessions() {
@@ -25,7 +25,7 @@ export default function Sessions() {
             <ErrorOrLoading error={error} loading={isLoading}/>
             {isLoading === false && <table className='table table-bordered table-striped table-responsive-sm'>
             <thead>
-            <tr className='table'>
+            <tr>
                 <th>Date</th>
                 <th>Laps</th>
                 <th>Average Lap</th>
@@ -55,7 +55,7 @@ export default function Sessions() {
                 ))}
                 </tbody>
             </table>}
-            <SessionModal session={session} show={show} handleClose={handleClose}/>
+            {session && <EditSession session={session} show={show} handleClose={handleClose}/>}
         </div>
     )
 }
