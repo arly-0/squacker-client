@@ -8,8 +8,16 @@ export const sessionSliceApi = api.injectEndpoints({
                 method: 'GET',
             }),
             providesTags: ['Session']
+        }),
+        updateSession: builder.mutation({
+            query: (id, session) => ({
+                url: `/session/${id}`,
+                method: 'PATCH',
+                body: session
+            }),
+            providesTags: ['Session']
         })
     })
 })
 
-export const {useGetAllUserSessionsQuery} = sessionSliceApi
+export const {useGetAllUserSessionsQuery, useUpdateSessionMutation} = sessionSliceApi
