@@ -3,7 +3,7 @@ import jwtDecode from "jwt-decode"
 
 const token = localStorage.getItem('squacker-token')
 const decodedToken = token ? jwtDecode(token) : null
-const isTokenValid = Date.now() < decodedToken.exp * 1000
+const isTokenValid = decodedToken ? Date.now() < decodedToken.exp * 1000 : false
 const user = isTokenValid ? {email: decodedToken.email, id: decodedToken.id, isActivated: decodedToken.isActivated} : null
 const initialState = {user, isAuth: isTokenValid}
 
@@ -17,7 +17,7 @@ const authSlice = createSlice({
             state.isAuth = true
             localStorage.setItem('squacker-token', accessToken)
         },
-        logOut(state, action) {
+        logOut(state) {
             state.user = null
             state.isAuth = false
             localStorage.removeItem('squacker-token')
